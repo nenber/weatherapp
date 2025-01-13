@@ -28,6 +28,12 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  flutter_bloc: ^9.0.0
+  hydrated_bloc: ^10.0.0
+  geolocator: ^13.0.2
+  equatable: ^2.0.7
+  json_serializable: ^6.9.3
+  dio: ^5.7.0
   flutter:
     sdk: flutter
 
