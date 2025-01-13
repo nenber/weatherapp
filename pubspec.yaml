@@ -34,6 +34,9 @@ dependencies:
   equatable: ^2.0.7
   json_serializable: ^6.9.3
   dio: ^5.7.0
+  flutter_dotenv: ^5.2.1
+  path_provider: ^2.1.5
+  get_it: ^8.0.3
   flutter:
     sdk: flutter
 
@@ -57,7 +60,8 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-
+  assets:
+    - .env
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
