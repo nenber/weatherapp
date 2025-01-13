@@ -15,7 +15,8 @@ class _AddCityScreenState extends State<AddCityScreen>
     with AutomaticKeepAliveClientMixin {
   final TextEditingController _cityController = TextEditingController();
   Timer? _debounce;
-
+  List<City> suggestions = [];
+  @override
   void dispose() {
     _debounce?.cancel();
     _cityController.dispose();
@@ -32,11 +33,17 @@ class _AddCityScreenState extends State<AddCityScreen>
   }
 
   void _onCitySelected(BuildContext context, City city) {
-    // Handle city selection logic
+    // Affiche un message de sélection
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text('City "${city.city}" selected!')),
     );
-    Navigator.pop(context, city);
+
+    // Ajoute la ville via le bloc
+    context.read<CityBloc>().add(AddCityEvent(city: city));
+
+    // Réinitialise le champ de texte
+    _cityController.clear();
+    Navigator.pop(context);
   }
 
   @override
@@ -62,7 +69,7 @@ class _AddCityScreenState extends State<AddCityScreen>
             const SizedBox(height: 16),
             Expanded(
               child: BlocBuilder<CityBloc, CityState>(
-                builder: (context, state) {
+                builder: (cxt, state) {
                   if (state is CityLoadingState) {
                     return const Center(
                       child: CircularProgressIndicator(),
@@ -74,7 +81,8 @@ class _AddCityScreenState extends State<AddCityScreen>
                     );
                   }
                   if (state is CityListState) {
-                    return state.cities.isEmpty
+                    suggestions = state.cities;
+                    return suggestions.isEmpty
                         ? const Center(
                             child: Text(
                               'No suggestions available',
@@ -82,12 +90,12 @@ class _AddCityScreenState extends State<AddCityScreen>
                             ),
                           )
                         : ListView.builder(
-                            itemCount: state.cities.length,
+                            itemCount: suggestions.length,
                             itemBuilder: (context, index) {
                               return ListTile(
-                                title: Text(state.cities[index].city),
+                                title: Text(suggestions[index].city),
                                 onTap: () => _onCitySelected(
-                                    context, state.cities[index]),
+                                    context, suggestions[index]),
                               );
                             },
                           );

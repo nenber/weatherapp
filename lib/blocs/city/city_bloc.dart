@@ -38,6 +38,16 @@ class CityBloc extends HydratedBloc<CityEvent, CityState> {
         emit(CityErrorState(message: e.toString()));
       }
     });
+    on<AddCityEvent>((event, emit) async {
+      emit(CityLoadingState());
+      try {
+        await _cityRepository.addCity(event.city);
+        final result = await _cityRepository.fetchCityList();
+        emit(CityListState(cities: result));
+      } catch (e) {
+        emit(CityErrorState(message: e.toString()));
+      }
+    });
   }
 
   /// Restauration des données depuis le stockage

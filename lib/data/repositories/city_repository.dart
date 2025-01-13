@@ -39,6 +39,15 @@ class CityRepository {
     }
   }
 
+  Future<void> addCity(City city) async {
+    try {
+      cities.add(city);
+    } catch (e) {
+      print(e);
+      throw Exception(e.toString());
+    }
+  }
+
   Future<List<City>> fetchCityList() async {
     return cities;
   }

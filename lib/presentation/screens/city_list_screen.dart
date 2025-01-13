@@ -26,9 +26,9 @@ class CityListScreen extends StatelessWidget {
                   return ListTile(
                     title: Text(state.cities[index].name),
                     onTap: () {
-                      context
-                          .read<CityBloc>()
-                          .add(GetCityEvent(city: state.cities[index].id));
+                      // context
+                      //     .read<CityBloc>()
+                      //     .add(GetCityEvent(city: state.cities[index].id));
                     },
                   );
                 },
