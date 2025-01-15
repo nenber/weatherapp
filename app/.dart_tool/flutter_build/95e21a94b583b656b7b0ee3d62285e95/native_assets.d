@@ -1,0 +1,1 @@
+ E:\\weatherapp_neosilver\\app\\.dart_tool\\flutter_build\\95e21a94b583b656b7b0ee3d62285e95\\native_assets.yaml: 
