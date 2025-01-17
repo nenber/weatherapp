@@ -2,6 +2,7 @@
 
 # to use the whole app
 
+ - add you weather api key in 'app/.env' from [openweathermap.org](https://openweathermap.org)
  - run pub get
  - flutter run
  
