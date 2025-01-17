@@ -97,8 +97,7 @@ class CityDetailsScreen extends StatelessWidget {
       crossAxisCount: 2,
       crossAxisSpacing: 12,
       mainAxisSpacing: 12,
-      childAspectRatio:
-          1.7, // Augmenté de 1.5 à 1.7 pour plus d'espace vertical
+      childAspectRatio: 1.7,
       children: [
         _buildInfoCard(
           icon: Icons.water_drop,
@@ -113,7 +112,7 @@ class CityDetailsScreen extends StatelessWidget {
           color: Colors.green,
         ),
         _buildInfoCard(
-          icon: Icons.compass_calibration,
+          icon: Icons.gas_meter,
           title: 'Pressure',
           value: '${args['weather'].main.pressure} hPa',
           color: Colors.purple,

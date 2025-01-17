@@ -2,9 +2,9 @@ import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:weatherapp_neosilver/data/models/city.dart';
 import 'package:weatherapp_neosilver/data/repositories/city_repository.dart';
-
+import 'package:weather_component/src/models/city_model.dart';
+import 'package:geolocator/geolocator.dart';
 part 'city_event.dart';
 part 'city_state.dart';
 
@@ -38,10 +38,31 @@ class CityBloc extends HydratedBloc<CityEvent, CityState> {
         emit(CityErrorState(message: e.toString()));
       }
     });
+    on<GetCityByCoordinatesEvent>((event, emit) async {
+      emit(CityLoadingState());
+      try {
+        final position = await _cityRepository.determinePosition();
+        final cities = await _cityRepository.searchCityByCoordinates(
+            position.latitude, position.longitude);
+        emit(CitySearchListState(cities: cities));
+      } catch (e) {
+        emit(CityErrorState(message: e.toString()));
+      }
+    });
     on<AddCityEvent>((event, emit) async {
       emit(CityLoadingState());
       try {
         await _cityRepository.addCity(event.city);
+        final result = await _cityRepository.fetchCityList();
+        emit(CityListState(cities: result));
+      } catch (e) {
+        emit(CityErrorState(message: e.toString()));
+      }
+    });
+    on<RemoveCityEvent>((event, emit) async {
+      emit(CityLoadingState());
+      try {
+        await _cityRepository.removeCity(event.city);
         final result = await _cityRepository.fetchCityList();
         emit(CityListState(cities: result));
       } catch (e) {

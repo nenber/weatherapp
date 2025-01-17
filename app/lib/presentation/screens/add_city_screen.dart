@@ -2,7 +2,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weatherapp_neosilver/blocs/city/city_bloc.dart';
-import 'package:weatherapp_neosilver/data/models/city.dart';
+import 'package:weather_component/src/models/city_model.dart';
+import 'package:weatherapp_neosilver/presentation/widgets/search_textfield.dart';
 
 class AddCityScreen extends StatefulWidget {
   const AddCityScreen({Key? key}) : super(key: key);
@@ -13,38 +14,20 @@ class AddCityScreen extends StatefulWidget {
 
 class _AddCityScreenState extends State<AddCityScreen>
     with AutomaticKeepAliveClientMixin {
-  final TextEditingController _cityController = TextEditingController();
-  Timer? _debounce;
   List<City> suggestions = [];
   @override
-  void dispose() {
-    _debounce?.cancel();
-    _cityController.dispose();
-    super.dispose();
-  }
-
-  void _onSearchChanged(BuildContext context, String query) {
-    if (_debounce?.isActive ?? false) {
-      _debounce?.cancel();
-    }
-    _debounce = Timer(const Duration(milliseconds: 500), () {
-      context.read<CityBloc>().add(SearchCityEvent(city: query));
-    });
-  }
-
   void _onCitySelected(BuildContext context, City city) {
     // Affiche un message de sélection
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
           backgroundColor: Colors.green,
-          content: Text('City "${city.city}" added!')),
+          content: Text('City "${city.name}" added!')),
     );
 
     // Ajoute la ville via le bloc
     context.read<CityBloc>().add(AddCityEvent(city: city));
 
     // Réinitialise le champ de texte
-    _cityController.clear();
     Navigator.pop(context);
   }
 
@@ -59,20 +42,11 @@ class _AddCityScreenState extends State<AddCityScreen>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TextField(
-              controller: _cityController,
-              decoration: const InputDecoration(
-                labelText: 'Search City',
-                border: OutlineInputBorder(),
-                helperText: "You must enter at least 3 characters",
-              ),
-              onChanged: (query) => _onSearchChanged(context, query),
-            ),
+            SearchTextFieldWidget(),
             const SizedBox(height: 16),
             Expanded(
               child: BlocBuilder<CityBloc, CityState>(
                 builder: (cxt, state) {
-                  print(state);
                   if (state is CityLoadingState) {
                     return const Center(
                       child: CircularProgressIndicator(),
@@ -94,14 +68,28 @@ class _AddCityScreenState extends State<AddCityScreen>
                             ),
                           )
                         : ListView.builder(
+                            padding: const EdgeInsets.all(0),
+                            shrinkWrap: true,
                             itemCount: suggestions.length,
                             itemBuilder: (context, index) {
-                              return ListTile(
-                                title: Text(suggestions[index].city),
-                                subtitle:
-                                    Text("${suggestions[index].citycode}"),
-                                onTap: () => _onCitySelected(
-                                    context, suggestions[index]),
+                              return Container(
+                                margin: const EdgeInsets.only(bottom: 8),
+                                child: Material(
+                                  elevation: 4,
+                                  color: Colors.white,
+                                  shadowColor: Colors.grey[300],
+                                  borderRadius: BorderRadius.circular(8),
+                                  child: ListTile(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    title: Text(suggestions[index].name),
+                                    subtitle:
+                                        Text("${suggestions[index].state}"),
+                                    onTap: () => _onCitySelected(
+                                        context, suggestions[index]),
+                                  ),
+                                ),
                               );
                             },
                           );

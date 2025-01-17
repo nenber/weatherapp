@@ -3,15 +3,15 @@ class Weather {
   final List<WeatherCondition> weather;
   final String base;
   final Main main;
-  final int visibility;
+  final int? visibility;
   final Wind wind;
   final Clouds clouds;
-  final int dt;
+  final int? dt;
   final Sys sys;
-  final int timezone;
+  final int? timezone;
   final int id;
   final String name;
-  final int cod;
+  final int? cod;
 
   Weather({
     required this.coord,
@@ -30,27 +30,6 @@ class Weather {
   });
 
   factory Weather.fromJson(Map<String, dynamic> json) {
-    try {
-      return Weather(
-        coord: Coord.fromJson(json['coord']),
-        weather: (json['weather'] as List)
-            .map((item) => WeatherCondition.fromJson(item))
-            .toList(),
-        base: json['base'],
-        main: Main.fromJson(json['main']),
-        visibility: json['visibility'],
-        wind: Wind.fromJson(json['wind']),
-        clouds: Clouds.fromJson(json['clouds']),
-        dt: json['dt'],
-        sys: Sys.fromJson(json['sys']),
-        timezone: json['timezone'],
-        id: json['id'],
-        name: json['name'],
-        cod: json['cod'],
-      );
-    } catch (e) {
-      print(e);
-    }
     return Weather(
       coord: Coord.fromJson(json['coord']),
       weather: (json['weather'] as List)
@@ -148,7 +127,7 @@ class Main {
 
 class Wind {
   final double speed;
-  final int deg;
+  final int? deg;
 
   Wind({
     required this.speed,
@@ -178,11 +157,11 @@ class Clouds {
 }
 
 class Sys {
-  final int type;
+  final int? type;
   final int id;
   final String country;
-  final int sunrise;
-  final int sunset;
+  final int? sunrise;
+  final int? sunset;
 
   Sys({
     required this.type,
@@ -194,11 +173,11 @@ class Sys {
 
   factory Sys.fromJson(Map<String, dynamic> json) {
     return Sys(
-      type: json['type'],
-      id: json['id'],
+      type: json['type'] ?? -1,
+      id: json['id'] ?? -1,
       country: json['country'],
-      sunrise: json['sunrise'],
-      sunset: json['sunset'],
+      sunrise: json['sunrise'] ?? -1,
+      sunset: json['sunset'] ?? -1,
     );
   }
 }

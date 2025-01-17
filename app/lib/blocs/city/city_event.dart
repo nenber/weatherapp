@@ -49,3 +49,10 @@ class GetCityListEvent extends CityEvent {
   @override
   List<Object> get props => [];
 }
+
+class GetCityByCoordinatesEvent extends CityEvent {
+  const GetCityByCoordinatesEvent();
+
+  @override
+  List<Object> get props => [];
+}

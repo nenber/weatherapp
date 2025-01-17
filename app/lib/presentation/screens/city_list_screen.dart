@@ -9,6 +9,7 @@ class CityListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          leading: Icon(Icons.sunny),
           title: const Text('Weather App'),
         ),
         floatingActionButton: FloatingActionButton(

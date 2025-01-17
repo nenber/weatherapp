@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 application
-INJECTED from E:\weatherapp_neosilver\app\android\app\src\main\AndroidManifest.xml:2:5-33:19
+INJECTED from E:\weatherapp_neosilver\app\android\app\src\main\AndroidManifest.xml:5:5-36:19
 INJECTED from E:\weatherapp_neosilver\app\android\app\src\debug\AndroidManifest.xml
 MERGED from [:geolocator_android] E:\weatherapp_neosilver\app\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:7:5-13:19
 MERGED from [:geolocator_android] E:\weatherapp_neosilver\app\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:7:5-13:19
@@ -31,8 +31,8 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\ne
 	android:name
 		INJECTED from E:\weatherapp_neosilver\app\android\app\src\main\AndroidManifest.xml
 manifest
-ADDED from E:\weatherapp_neosilver\app\android\app\src\main\AndroidManifest.xml:1:1-45:12
-MERGED from E:\weatherapp_neosilver\app\android\app\src\main\AndroidManifest.xml:1:1-45:12
+ADDED from E:\weatherapp_neosilver\app\android\app\src\main\AndroidManifest.xml:1:1-48:12
+MERGED from E:\weatherapp_neosilver\app\android\app\src\main\AndroidManifest.xml:1:1-48:12
 INJECTED from E:\weatherapp_neosilver\app\android\app\src\debug\AndroidManifest.xml:1:1-7:12
 INJECTED from E:\weatherapp_neosilver\app\android\app\src\debug\AndroidManifest.xml:1:1-7:12
 INJECTED from E:\weatherapp_neosilver\app\android\app\src\debug\AndroidManifest.xml:1:1-7:12
@@ -76,18 +76,30 @@ MERGED from [com.getkeepsafe.relinker:relinker:1.4.5] C:\Users\nenbe\.gradle\cac
 		INJECTED from E:\weatherapp_neosilver\app\android\app\src\debug\AndroidManifest.xml
 	xmlns:android
 		ADDED from E:\weatherapp_neosilver\app\android\app\src\main\AndroidManifest.xml:1:11-69
-queries
-ADDED from E:\weatherapp_neosilver\app\android\app\src\main\AndroidManifest.xml:39:5-44:15
-intent#action:name:android.intent.action.PROCESS_TEXT+data:mimeType:text/plain
-ADDED from E:\weatherapp_neosilver\app\android\app\src\main\AndroidManifest.xml:40:9-43:18
-action#android.intent.action.PROCESS_TEXT
-ADDED from E:\weatherapp_neosilver\app\android\app\src\main\AndroidManifest.xml:41:13-72
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from E:\weatherapp_neosilver\app\android\app\src\main\AndroidManifest.xml:2:1-75
 	android:name
-		ADDED from E:\weatherapp_neosilver\app\android\app\src\main\AndroidManifest.xml:41:21-70
+		ADDED from E:\weatherapp_neosilver\app\android\app\src\main\AndroidManifest.xml:2:18-72
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from E:\weatherapp_neosilver\app\android\app\src\main\AndroidManifest.xml:3:1-77
+	android:name
+		ADDED from E:\weatherapp_neosilver\app\android\app\src\main\AndroidManifest.xml:3:18-74
+uses-permission#android.permission.ACCESS_BACKGROUND_LOCATION
+ADDED from E:\weatherapp_neosilver\app\android\app\src\main\AndroidManifest.xml:4:1-81
+	android:name
+		ADDED from E:\weatherapp_neosilver\app\android\app\src\main\AndroidManifest.xml:4:18-78
+queries
+ADDED from E:\weatherapp_neosilver\app\android\app\src\main\AndroidManifest.xml:42:5-47:15
+intent#action:name:android.intent.action.PROCESS_TEXT+data:mimeType:text/plain
+ADDED from E:\weatherapp_neosilver\app\android\app\src\main\AndroidManifest.xml:43:9-46:18
+action#android.intent.action.PROCESS_TEXT
+ADDED from E:\weatherapp_neosilver\app\android\app\src\main\AndroidManifest.xml:44:13-72
+	android:name
+		ADDED from E:\weatherapp_neosilver\app\android\app\src\main\AndroidManifest.xml:44:21-70
 data
-ADDED from E:\weatherapp_neosilver\app\android\app\src\main\AndroidManifest.xml:42:13-50
+ADDED from E:\weatherapp_neosilver\app\android\app\src\main\AndroidManifest.xml:45:13-50
 	android:mimeType
-		ADDED from E:\weatherapp_neosilver\app\android\app\src\main\AndroidManifest.xml:42:19-48
+		ADDED from E:\weatherapp_neosilver\app\android\app\src\main\AndroidManifest.xml:45:19-48
 uses-permission#android.permission.INTERNET
 ADDED from E:\weatherapp_neosilver\app\android\app\src\debug\AndroidManifest.xml:6:5-66
 	android:name
